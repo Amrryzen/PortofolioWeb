@@ -1,3 +1,4 @@
+/* Reset & Global */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +13,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Animasi */
+/* Animasi Global */
 @keyframes zoomin {
   0% { transform: scale(0.7); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
@@ -43,7 +44,22 @@ body {
   50%, 100% { bottom: 100%; }
 }
 
-/* canvas background */
+@keyframes rotate-ring {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-ring-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Canvas Background */
 #trail-canvas {
   position: fixed;
   top: 0;
@@ -53,7 +69,7 @@ body {
   z-index: -1;
 }
 
-/* landing section */
+/* Landing Section */
 .landing {
   height: 100vh;
   display: flex;
@@ -77,6 +93,7 @@ body {
   opacity: 0;
   filter: blur(15px);
 }
+
 .enter-btn {
   position: relative;
   display: inline-block;
@@ -89,7 +106,7 @@ body {
   overflow: hidden;
   transition: 0.5s;
   background: transparent;
-  border: none; 
+  border: none;
   animation: zoomin 1s ease-in-out;
 }
 
@@ -97,9 +114,7 @@ body {
   background: #000;
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 5px #000, 
-              0 0 25px #000, 
-              0 0 50px #000;
+  box-shadow: 0 0 5px #000, 0 0 25px #000, 0 0 50px #000;
 }
 
 .enter-btn span {
@@ -119,7 +134,7 @@ body {
   width: 2px; height: 100%;
   background: linear-gradient(180deg, transparent, #000);
   animation: btn-anim2 1s linear infinite;
-  animation-delay: .25s;
+  animation-delay: 0.25s;
 }
 
 .enter-btn span:nth-child(3) {
@@ -127,7 +142,7 @@ body {
   width: 100%; height: 2px;
   background: linear-gradient(270deg, transparent, #000);
   animation: btn-anim3 1s linear infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
 }
 
 .enter-btn span:nth-child(4) {
@@ -135,129 +150,182 @@ body {
   width: 2px; height: 100%;
   background: linear-gradient(360deg, transparent, #000);
   animation: btn-anim4 1s linear infinite;
-  animation-delay: .75s;
+  animation-delay: 0.75s;
 }
 
-/* home section */
+/* Home Section */
 #home {
   min-height: 100vh;
   padding: 120px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 16px;
   animation: revealUp 1s ease-in-out;
 }
 
-#home {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 16px;
-}
-
+/* Header */
 #header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 16px 128px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px 128px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 #header h1 {
-    animation: flash 2s infinite, bounceIn 2s infinite ease-in-out;
+  animation: flash 2s infinite, bounceIn 2s infinite ease-in-out;
 }
 
 nav > a {
-    margin-left: 12px;
-    color: black;
-    text-decoration: none;
+  margin-left: 12px;
+  color: black;
+  text-decoration: none;
 }
 
 nav > a:hover {
-    border-bottom: #000000 2px solid;
+  border-bottom: 2px solid #000000;
 }
 
-/* Container Utama Hero */
+/* Hero Section */
 #h-body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: calc(100vh - 80px); /* Menghitung tinggi layar dikurangi header */
-    padding: 0 10%; /* Kasih ruang di kiri kanan */
-    gap: 40px;
+    min-height: calc(100vh - 80px); 
+    padding: 0 5% 0 10%; /* Kurangi padding kanan biar gambar lebih mepet ke pinggir */
+    gap: 20px;
+    overflow: hidden; /* Supaya ring yang besar gak bikin scrollbar */
 }
 
-/* Bagian Teks (Kiri) */
 #h-body > div:first-child {
-    flex: 1;
-    z-index: 2;
+    flex: 1.2; /* Teks dapet ruang lebih */
+    z-index: 5;
 }
 
 #h-body h1 {
-    font-size: 3.5rem; /* Lebih besar biar mirip contoh */
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 20px;
+    font-size: 4.5rem; /* Perbesar font h1 */
+    text-transform: uppercase;
+    letter-spacing: -2px;
 }
 
 #h-body p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-    opacity: 0.8;
-    max-width: 500px;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  opacity: 0.8;
+  max-width: 500px;
 }
 
-/* Bagian Gambar (Kanan) */
 #h-body > div:last-child {
-    flex: 1;
+    flex: 1.5; /* Gambar harus lebih dominan */
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 #h-body img {
-    max-width: 120%; /* Biar gambar bisa agak overlap/besar */
-    height: auto;
-    object-fit: contain;
-    /* Optional: Tambahin shadow halus biar kayak desain Solo Leveling */
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-    animation: revealUp 1.2s ease-out;
+  max-width: 120%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+  animation: revealUp 1.2s ease-out;
 }
 
-/* Responsive buat HP */
-@media (max-width: 768px) {
-    #h-body {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding: 50px 20px;
-    }
-    
-    #h-body h1 {
-        font-size: 2.5rem;
-    }
-    
-    #h-body > div:last-child {
-        justify-content: center;
-    }
+/* Buttons */
+.btn {
+  background-color: #00aaff;
+  color: #000000;
+  padding: 8px 24px;
+  transition: 0.3s;
+}
+
+.btn-alt {
+  background-color: transparent;
+  color: black;
+  margin-right: 16px;
+  border: 2px solid #00aaff;
+  transition: 0.3s;
 }
 
 #h-body .btn:hover,
 #h-body .btn-alt:hover {
-    background-color: #000000;
-    color: white;
-    transition: 0.3s;
+  background-color: #000000;
+  color: white;
 }
 
-.btn {
-    background-color: #00aaff;
-    color: rgb(0, 0, 0);
-    padding: 8px 24px;
+/* Image Wrapper & Neon Ring */
+.img-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 650px; /* Perbesar max-width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.btn-alt {
-    background-color: rgba(255, 255, 255, 0);
-    color: black;
-    margin-right: 16px;
-    border: 2px solid #00aaff;
+.img-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 170, 255, 0.2) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.neon-ring {
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top: 4px solid #00aaff;
+  border-bottom: 4px solid #00aaff;
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+  animation: rotate-ring 4s linear infinite;
+  z-index: 1;
+}
+
+.neon-ring::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-left: 2px solid #00aaff;
+  border-right: 2px solid #00aaff;
+  opacity: 0.5;
+  animation: rotate-ring-reverse 6s linear infinite;
+}
+
+.img-wrapper img {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #h-body {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  #h-body h1 {
+    font-size: 2.5rem;
+  }
+
+  #h-body > div:last-child {
+    justify-content: center;
+  }
 }
