@@ -12,6 +12,17 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Animasi */
+@keyframes zoomin {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes revealUp {
+  0% { opacity: 0; transform: translateY(80px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 /* canvas background */
 #trail-canvas {
   position: fixed;
@@ -41,6 +52,11 @@ body {
   animation: zoomin 1s ease;
 }
 
+.landing.active {
+  transform: scale(1.2);
+  opacity: 0;
+  filter: blur(15px);
+}
 .enter-btn {
   text-decoration: none;
   color: #000000;
@@ -50,6 +66,7 @@ body {
   padding: 10px 25px;
   border: 1px solid #000000;
   border-radius: 30px;
+  animation: zoomin 1s ease-in-out
 }
 
 .enter-btn:hover {
@@ -65,7 +82,7 @@ body {
   padding: 120px 20px;
   text-align: center;
   background: #ffffff;
-  animation: revealUp 1s ease;
+  animation: revealUp 1s ease-in-out;
 }
 
 #home h2 {
@@ -75,21 +92,4 @@ body {
 
 #home p {
   opacity: 0.7;
-}
-
-/* animations */
-@keyframes zoomin {
-  0% { transform: scale(0.7); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes revealUp {
-  0% { opacity: 0; transform: translateY(80px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.landing.active {
-  transform: scale(1.2);
-  opacity: 0;
-  filter: blur(15px);
 }
